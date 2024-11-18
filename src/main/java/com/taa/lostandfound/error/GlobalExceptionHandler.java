@@ -62,4 +62,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Object> handleParsingException(ParsingException e) {
         return ResponseEntity.status(400).body(e.getMessage());
     }
+
+    @ExceptionHandler(AlreadyExistsException.class)
+    public ResponseEntity<Object> handleAlreadyExistsException(AlreadyExistsException e) {
+        return ResponseEntity.status(409).body(e.getMessage());
+    }
 }

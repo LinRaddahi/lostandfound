@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             alert('Item claimed successfully');
             modal.style.display = 'none';
         } else {
-            alert('Failed to claim item');
+            alert('Failed to claim item: ' + response.status + ' ' + await response.text());
         }
     });
 });

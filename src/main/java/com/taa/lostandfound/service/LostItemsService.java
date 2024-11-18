@@ -2,6 +2,7 @@ package com.taa.lostandfound.service;
 
 import com.taa.lostandfound.entity.ClaimEntity;
 import com.taa.lostandfound.entity.LostItemEntity;
+import com.taa.lostandfound.error.AlreadyExistsException;
 import com.taa.lostandfound.error.NotFoundException;
 import com.taa.lostandfound.mapper.ClaimMapper;
 import com.taa.lostandfound.mapper.LostItemMapper;
@@ -69,12 +70,15 @@ public class LostItemsService {
         LostItemEntity lostItem =
                 lostItemRepository.findById(itemId).orElseThrow(() ->
                         new NotFoundException(String.format("Lost item with id '%s' not found", itemId))
-
         );
-        return claimMapper.mapEntityToDto(claimRepository.save(
-                new ClaimEntity(userMapper.mapDtoToEntity(user, null), lostItem, quantity)
-        ));
-
+        try {
+            return claimMapper.mapEntityToDto(claimRepository.save(
+                    new ClaimEntity(userMapper.mapDtoToEntity(user, null), lostItem, quantity)
+            ));
+        } catch (Exception e) {
+            log.error("Item '{}' already claimed by user with id '{}'", itemId, user.id());
+            throw new AlreadyExistsException("Item already claimed");
+        }
     }
 
     public Page<ClaimDTO> getLostItemClaims(int page, int perPage) {
