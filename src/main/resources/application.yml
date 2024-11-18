@@ -1,0 +1,7 @@
+spring:
+  application.name: "Lost and Found"
+  config:
+    import: "optional:configserver:"
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher

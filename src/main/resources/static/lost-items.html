@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lost items</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<button id="backButton" class="back-button">Back</button>
+<div id="itemsContainer"></div>
+<div id="claimModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <form id="claimForm">
+            <label for="claimQuantity">Quantity:</label>
+            <input type="number" id="claimQuantity" name="quantity" required>
+            <input type="hidden" id="itemId" name="itemId">
+            <button type="submit">Claim</button>
+        </form>
+    </div>
+</div>
+<script src="js/common.js"></script>
+<script src="/js/lost-items.js"></script>
+</body>
+</html>
