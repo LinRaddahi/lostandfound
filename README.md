@@ -23,7 +23,7 @@ This is a Lost and Found application built with Java, Spring Boot, and Maven. It
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/your-username/lost-and-found.git
+    git clone https://github.com/LinRaddahi/lostandfound.git
     cd lost-and-found
     ```
 
